@@ -9,11 +9,9 @@ class Projects extends React.Component {
       {
         projectInfo.map((key,index)=>{
           return (
-            <div className="project-box">
-              <div key={index}>
+            <div className="project-box" key={index}>
                    <div>{key.name}</div>
                    <div>{key.description}</div>
-              </div>
             </div>
           )
         })
