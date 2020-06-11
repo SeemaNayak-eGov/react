@@ -7,17 +7,21 @@
   width: 50%;
   height: 200px;
   margin: 5px;
-  border: 3px solid brown;
+  border: 3px solid lightgrey;
   padding: 5px;
 }
 
 .education-box {
-  width:50%;
+  width: 50%;
   margin: 5px;
-  border: 3px solid brown;
+  border: 3px solid lightgrey;
   padding: 5px;
 }
 
 .list-type {
-   list-style-type: none;
+  list-style-type: none;
+}
+
+.title-layout {
+  padding: 10px;
 }

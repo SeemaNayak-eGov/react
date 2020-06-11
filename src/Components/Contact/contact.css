@@ -7,11 +7,10 @@
   flex-direction: row;
 }
 
-.profile-pic{
-    display: flex;
-    border-radius: 10%;
+.profile-pic {
+  display: flex;
+  border-radius: 10%;
 }
-
 
 .profile-box {
   display: flex;
@@ -19,14 +18,14 @@
   width: 50%;
   height: 100px;
   margin: 5px;
-  border: 3px solid brown;
+  border: 3px solid lightgrey;
   padding: 5px;
 }
 
 .contact-box {
-  width:50%;
+  width: 50%;
   margin: 5px;
-  border: 3px solid brown;
+  border: 3px solid lightgrey;
   padding: 5px;
 }
 
