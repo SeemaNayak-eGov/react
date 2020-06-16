@@ -1,19 +1,27 @@
 import React from "react";
+import { withStyles} from '@material-ui/core';
+
+const styles = theme => ({
+  root: {
+    padding: theme.spacing(2),
+    textAlign: 'left',
+    height: theme.spacing(5),
+  },
+});
 
 class EduExpDetails extends React.Component {
   render() {
-    const {eduexp,title}=this.props;
-    return <div className="title-layout">
+    const {eduexp,title,classes}=this.props;
+
+    return <div className={classes.root}>
     <h3>{title}</h3>
       {
         eduexp.map((item,index)=>{
           return (
-            <div className="list-type">
                <div key={index}>
-               <li><h3>{item.name}</h3></li>
-               <li>{item.description}</li>
+                   <h3>{item.name}</h3>
+                   {item.description}
                </div>
-            </div>
           )
         })
       }
@@ -22,4 +30,4 @@ class EduExpDetails extends React.Component {
   }
 }
 
-export default EduExpDetails;
+export default withStyles (styles) (EduExpDetails);;

@@ -1,24 +1,37 @@
 import React from "react";
-import "./projects.css";
+import {Paper, withStyles, Grid} from '@material-ui/core';
+
+const styles = theme => ({
+  paper: {
+    display: 'flex',
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    height: theme.spacing(5),
+  },
+});
 
 class Projects extends React.Component {
   render() {
     const {projectInfo}=this.props;
-    return <div className="layout">
-    <div className="horizontal-layout">
+    const {classes} = this.props;
+
+    return <div>
+    <Paper className={classes.paper} elevation={3} >
       {
         projectInfo.map((key,index)=>{
           return (
-            <div className="project-box" key={index}>
-                   <div>{key.name}</div>
-                   <div>{key.description}</div>
-            </div>
+            <Grid item xs={3}>
+              <Paper elevation={0}>
+                     <div>{key.name}</div>
+                     <div>{key.description}</div>
+              </Paper>
+            </Grid>
           )
         })
       }
-      </div>
+      </Paper>
     </div>;
   }
 }
 
-export default Projects;
+export default withStyles (styles) (Projects);

@@ -4,7 +4,17 @@ import Projects from "./Components/Projects/Projects";
 import Objective from "./Components/Objective/Objective";
 import Experience from "./Components/Experience/Experience";
 import Skills from "./Components/Skills/Skills";
+import Feedback from "./Components/Feedback/Feedback.js";
+import FeedbackInfo from "./Components/Feedback/components/FeedbackInfo/FeedbackInfo.js";
+
+import Grid from '@material-ui/core/Grid';
 import './App.css';
+
+const feedbackInfo = {
+  name: "",
+  description: "",
+  rating: ""
+};
 
 class App extends React.Component {
   state = {
@@ -70,20 +80,97 @@ class App extends React.Component {
        description: "Senior Software Engineer",
      },
    ],
+   feedback:feedbackInfo,
+   rating: [
+                {code: "1"},
+                {code: "2"},
+                {code: "3"},
+                {code: "4"},
+                {code: "5"},
+           ],
+    feedbackData:[{
+         name: "Abc",
+         description: "Good",
+         rating: "1",
+      },
+    ],
 
+  };
+
+  submitFeedback = (feedback = {}) => {
+        if (feedback.name && feedback.description && feedback.rating ) {
+          let { feedbackData = [] } = this.state;
+          feedbackData.push(feedback);
+          this.setState({
+            feedbackData,
+            feedback: feedbackInfo,
+          });
+        } else {
+          alert("Please enter the required information.");
+        }
+  };
+
+  handleChangeName=(value)=> {
+        const {feedback} = this.state;
+        this.setState({
+          feedback: {
+            ...feedback,
+            name: value,
+          },
+        });
+  };
+
+  handleChangeRating=(value)=> {
+        const {feedback} = this.state;
+        this.setState({
+          feedback: {
+            ...feedback,
+            rating: value,
+          },
+        });
+  };
+
+  handleChangeDescription=(value)=> {
+        const {feedback} = this.state;
+        this.setState({
+          feedback: {
+            ...feedback,
+            description: value,
+          },
+        });
   };
 
 
   render() {
-    const { myInfo = {}, projectInfo=[], objective={}, skillset = [], eduexp = []} = this.state;
+    const { myInfo = {}, projectInfo=[], objective={}, skillset = [], eduexp = [], feedback={}, rating=[], feedbackData=[]} = this.state;
+    const {submitFeedback, handleChangeName, handleChangeRating, handleChangeDescription} = this;
 
     return (
       <div className="app-layout">
-          <Contact myInfo={myInfo}/>
-          <Projects projectInfo={projectInfo}/>
-          <Objective objective={objective}/>
-          <Experience eduexp={eduexp}/>
-          <Skills skillset={skillset} />
+        <Grid container spacing={2}>
+            <Grid item xs={12}>
+                <Contact myInfo={myInfo}/>
+            </Grid>
+            <Grid item xs={12}>
+                <Projects projectInfo={projectInfo}/>
+            </Grid>
+            <Grid item xs={12}>
+                <Objective objective={objective}/>
+            </Grid>
+            <Grid item xs={12}>
+                <Experience eduexp={eduexp}/>
+            </Grid>
+            <Grid item xs={12}>
+                <Skills skillset={skillset} />
+            </Grid>
+            <Grid item xs={12}>
+                <FeedbackInfo feedbackData={feedbackData} />
+            </Grid>
+            <Grid item xs={12}>
+                 <Feedback feedback={feedback} submitFeedback={submitFeedback} rating={rating}
+                           handleChangeName={handleChangeName} handleChangeRating={handleChangeRating} handleChangeDescription={handleChangeDescription} />
+            </Grid>
+        </Grid>
       </div>
     );
   }

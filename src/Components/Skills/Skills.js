@@ -1,27 +1,47 @@
 import React from 'react';
 import SkillSet from "./components/SkillSet/SkillSet.js";
-import "./skills.css";
+import {Paper, withStyles, Grid} from '@material-ui/core';
+
+const styles = theme => ({
+  root: {
+    display: 'flex',
+    padding: theme.spacing(2),
+
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    height: theme.spacing(20),
+  }
+});
 
 class Skills extends React.Component {
   render() {
-    const {skillset=[]}=this.props;
+    const {skillset=[],classes}=this.props;
     const filteredTechSkill=skillset.filter((skill)=>{return skill.header==="Technical Skills"});
     const filteredTools=skillset.filter((skill)=>{return skill.header==="Tools"});
     const filteredHobbies=skillset.filter((skill)=>{return skill.header==="Hobbies"});
-    return <div className="layout">
-      <div className="horizontal-layout">
-      <div className="skills-box">
-        <SkillSet skillset={filteredTechSkill} headerName="Techinal Skills"/>
-      </div>
-      <div className="tools-box">
+    return <div>
+      <Paper className={classes.root} elevation={3}>
+        <Grid item xs={4}>
+          <Paper className={classes.paper} elevation={3}>
+            <SkillSet skillset={filteredTechSkill} headerName="Techinal Skills"/>
+          </Paper>
+        </Grid>
+        <Grid item xs={4}>
+        <Paper className={classes.paper} elevation={3}>
+
         <SkillSet skillset={filteredTools} headerName="Tools" />
-      </div>
-      <div className="hobbies-box">
+        </Paper>
+      </Grid>
+      <Grid item xs={4}>
+      <Paper className={classes.paper} elevation={3}>
         <SkillSet skillset={filteredHobbies} headerName="Hobbies"/>
-      </div>
-      </div>
+        </Paper>
+      </Grid>
+      </Paper>
     </div>;
   }
 }
 
-export default Skills;
+export default withStyles (styles) (Skills);

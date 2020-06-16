@@ -1,17 +1,26 @@
 import React from 'react';
-import "./objective.css"
+import {Paper, withStyles} from '@material-ui/core';
+
+const styles = theme => ({
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    height: theme.spacing(10),
+  },
+});
 
 class Objective extends React.Component {
   render () {
     const {objective}=this.props;
+    const {classes} = this.props;
 
     return(<div>
-      <div className="horizontal-layout">
-        <div className="objective-box"> {objective}
-        </div>
-      </div>
+        <Paper className={classes.paper} elevation={3} >
+          {objective}
+        </Paper>
        </div>)
   }
 }
 
-export default Objective;
+export default withStyles (styles) (Objective);
