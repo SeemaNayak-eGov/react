@@ -6,9 +6,11 @@ import {Paper, withStyles, Select, InputLabel, FormControl} from '@material-ui/c
 
 const styles = theme => ({
   root: {
-    padding: theme.spacing(2),
-    textAlign: 'left',
+    display: 'flex',
+    padding: theme.spacing(5),
+    textAlign: 'center',
   },
+
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
